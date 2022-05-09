@@ -11,25 +11,25 @@ export default function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/characters">character list</Link>
+              <Link to="/character">character list</Link>
             </li>
             <li>
-              <Link to="/locations">locations</Link>
+              <Link to="/location">locations</Link>
             </li>
             <li>
-              <Link to="/episodes">episodes</Link>
+              <Link to="/episode">episodes</Link>
             </li>
           </ul>
         </nav>
       </header>
       <Switch>
-        <Route path="/characters">
+        <Route path="/character">
           <Characters />
         </Route>
-        <Route path="/locations">
+        <Route path="/location">
           <Locations />
         </Route>
-        <Route path="/episodes">
+        <Route path="/episode">
           <Episodes />
         </Route>
       </Switch>
