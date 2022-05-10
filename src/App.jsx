@@ -1,9 +1,19 @@
 import { Link, Route, Switch } from 'react-router-dom';
 import Characters from './views/Characters';
 import Episodes from './views/Episodes';
+import { useEffect, useState } from 'react';
 import Locations from './views/Locations';
+import { useRouteMatch } from 'react-router-dom';
+import { fetchRickAndMorty } from './services/fetchRickAndMorty';
 
 export default function App() {
+  const { url, path } = useRouteMatch();
+
+  useEffect(() => {
+    const fetch = async () => {
+      fetchRickAndMorty(path);
+    };
+  }, [input]);
   return (
     <>
       <header>
