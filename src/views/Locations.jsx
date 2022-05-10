@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LocationCard from '../components/LocationCard';
 
 export default function Locations({ locations }) {
   return (
     <>
       <div>
         {locations.map((location) => (
-          <p key={location.id}>{location.name}</p>
+          <LocationCard key={location.id} location={location} />
         ))}
       </div>
     </>

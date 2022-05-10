@@ -19,7 +19,6 @@ export default function App() {
     };
     fetch();
   }, []);
-  console.log('characters', characters);
   return (
     <>
       <p></p>
