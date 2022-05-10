@@ -1,5 +1,17 @@
-export const fetchRickAndMorty = async (path) => {
-  const res = await fetch(`https://rickandmortyapi.com/api${path}`);
-  const { results } = await res.json();
+export const fetchRickAndMorty = async () => {
+  const characterFetch = await (
+    await fetch('https://rickandmortyapi.com/api/character')
+  ).json();
+  const episodeFetch = await (
+    await fetch('https://rickandmortyapi.com/api/episode')
+  ).json();
+  const locationFetch = await (
+    await fetch('https://rickandmortyapi.com/api/location')
+  ).json();
+  const results = {
+    characters: characterFetch.results,
+    episodes: episodeFetch.results,
+    locations: locationFetch.results,
+  };
   return results;
 };

@@ -3,19 +3,26 @@ import Characters from './views/Characters';
 import Episodes from './views/Episodes';
 import { useEffect, useState } from 'react';
 import Locations from './views/Locations';
-import { useRouteMatch } from 'react-router-dom';
+import { useRouteMatch, useLocation } from 'react-router-dom';
 import { fetchRickAndMorty } from './services/fetchRickAndMorty';
 
 export default function App() {
-  const { url, path } = useRouteMatch();
-
+  const [episodes, setEpisodes] = useState([]);
+  const [characters, setCharacters] = useState([]);
+  const [locations, setLocations] = useState([]);
   useEffect(() => {
     const fetch = async () => {
-      fetchRickAndMorty(path);
+      const { episodes, characters, locations } = await fetchRickAndMorty();
+      setEpisodes(episodes);
+      setCharacters(characters);
+      setLocations(locations);
     };
-  }, [input]);
+    fetch();
+  }, []);
+  console.log('characters', characters);
   return (
     <>
+      <p></p>
       <header>
         <h1>Welcome to the Rick and Morty API explorer</h1>
         <nav>
@@ -34,13 +41,13 @@ export default function App() {
       </header>
       <Switch>
         <Route path="/character">
-          <Characters />
+          <Characters characters={characters} />
         </Route>
         <Route path="/location">
-          <Locations />
+          <Locations locations={locations} />
         </Route>
         <Route path="/episode">
-          <Episodes />
+          <Episodes episodes={episodes} />
         </Route>
       </Switch>
     </>

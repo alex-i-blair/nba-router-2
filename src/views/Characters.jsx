@@ -1,10 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Characters() {
+export default function Characters({ characters }) {
   return (
     <>
-      <div>Characters</div>
+      <div>
+        {characters.map((character) => (
+          <p key={character.id}>{character.name}</p>
+        ))}
+      </div>
     </>
   );
 }
