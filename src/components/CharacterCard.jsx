@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
-export default function CharacterCard({ character }) {
+export default function CharacterCard({ character, renderImage }) {
   const { url, path } = useRouteMatch();
+
   return (
     <div>
       <Link
@@ -12,8 +13,14 @@ export default function CharacterCard({ character }) {
           textDecoration: 'none',
         }}
       >
-        <p>{character.name}</p>
-        <img src={character.image} alt="" />
+        {renderImage ? (
+          <p>{character.name}</p>
+        ) : (
+          <ul>
+            <li>{character.name}</li>
+          </ul>
+        )}
+        {renderImage && character.image && <img src={character.image} alt="" />}
       </Link>
     </div>
   );
