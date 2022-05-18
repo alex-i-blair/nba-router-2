@@ -17,13 +17,10 @@ export const fetchRickAndMorty = async () => {
 };
 
 export const fetchLocationCharacters = async (residents) => {
-  const results = [];
-  console.log('start');
-  residents.map(async (resident) => {
-    const result = await fetch(resident);
-    const character = await result.json();
-    results.push(character);
-  });
-  console.log('finish');
-  return results;
+  return Promise.all(
+    residents.map(async (resident) => {
+      const result = await fetch(resident);
+      return await result.json();
+    })
+  );
 };

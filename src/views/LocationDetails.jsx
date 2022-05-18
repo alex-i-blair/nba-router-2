@@ -15,6 +15,7 @@ export default function LocationDetails() {
   const { locationId } = useParams();
 
   useEffect(() => {
+    setLoading(true);
     fetchRickAndMorty()
       .then((response) => response.locations)
       .then((locations) =>
@@ -22,48 +23,16 @@ export default function LocationDetails() {
       )
       .then((currLocation) => {
         setLocation(currLocation);
+        console.log(currLocation);
         return fetchLocationCharacters(currLocation.residents);
       })
-      .then((locationCharacters) => setCharacters(locationCharacters))
-      .catch((error) => console.log(error, 'line 24'))
+      .then((locationCharacters) => {
+        console.log('locationCharacters :>> ', locationCharacters.length);
+        return setCharacters(locationCharacters);
+      })
+      .catch((error) => console.log(error, 'line 28'))
       .finally(() => setLoading(false));
   }, [locationId]);
-
-  // useEffect(() => {
-  //   if (locations !== []) {
-
-  //   }
-  // }, [locations]);
-  // useEffect(() => {
-  //   const getCharacters = async () => {
-  //     if (location?.residents && location !== []) {
-  //       const locationCharacters = await fetchLocationCharacters(
-  //         location?.residents
-  //       );
-  //       setCharacters(locationCharacters);
-  //       setLoading(false);
-  //     }
-  //   };
-  //   getCharacters();
-  // }, [location]);
-
-  // useEffect(() => {
-  //   const fetch = async () => {
-  //     const { locations } = await fetchRickAndMorty();
-  //     setLocations(locations);
-  //   };
-  //   fetch();
-  // }, [locationId]);
-
-  // useEffect(() => {
-  //   const fetchIt = async () => {
-  //     const currLocation = locations.find(
-  //       (location) => location.id === Number(locationId)
-  //     );
-  //     setLocation(currLocation);
-  //   };
-  //   fetchIt();
-  // }, [locations]);
 
   return (
     <>
@@ -86,7 +55,7 @@ export default function LocationDetails() {
             </li>
           </ul>
           <h4>Residents:</h4>
-          <Characters characters={characters} fromLocation="true" />
+          <Characters characters={characters} fromLocation={true} />
         </div>
       )}
     </>
