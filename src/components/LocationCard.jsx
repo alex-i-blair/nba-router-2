@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useRouteMatch, Route } from 'react-router-dom';
-import LocationDetails from '../views/LocationDetails';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 export default function LocationCard({ location }) {
-  const { url, path } = useRouteMatch();
+  const { url } = useRouteMatch();
 
   return (
     <div>
