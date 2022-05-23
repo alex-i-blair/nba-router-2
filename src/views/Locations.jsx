@@ -9,7 +9,7 @@ export default function Locations({ locations }) {
   const { url, path } = useRouteMatch();
 
   return (
-    <>
+    <div style={{ display: 'flex' }}>
       <div>
         {locations.map((location) => (
           <LocationCard key={location.id} location={location} />
@@ -17,9 +17,9 @@ export default function Locations({ locations }) {
       </div>
       <section>
         <Route path={`${path}/:locationId`}>
-          <LocationDetails locations={locations} />
+          <LocationDetails />
         </Route>
       </section>
-    </>
+    </div>
   );
 }
