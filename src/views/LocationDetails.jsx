@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   fetchLocationCharacters,
@@ -7,10 +7,8 @@ import {
 import Characters from '../views/Characters';
 
 export default function LocationDetails() {
-  // const { url, path } = useRouteMatch();
   const [location, setLocation] = useState({});
   const [characters, setCharacters] = useState([]);
-  const [locations, setLocations] = useState([]);
   const [loading, setLoading] = useState(true);
   const { locationId } = useParams();
 
@@ -37,7 +35,7 @@ export default function LocationDetails() {
   return (
     <>
       {loading ? (
-        <p>loading</p>
+        <p>loading...</p>
       ) : (
         <div className="location-details">
           <h1>LocationDetails</h1>
